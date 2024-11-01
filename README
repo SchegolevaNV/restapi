@@ -1,6 +1,7 @@
-Create environment variables:
+JSON example
 
-DATABASE_URL
-DATABASE
-USERNAME
-PASSWORD
+{
+    "myName": "Nadya",
+    "petName": "Tim",
+    "age": 41
+}
