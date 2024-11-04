@@ -16,6 +16,7 @@ public class MyDataPageResource {
     private int pageNumber;
     private int pageSize;
     private long total;
+    private long pagesTotal;
 
     public void add(final MyDataResource myDataResource) {
         myDataResources.add(myDataResource);

@@ -12,9 +12,22 @@ public class MyDataAssembler {
     public MyDataPageResource toPageResource(final Page<PeopleAndPet> myDataPage) {
 
         MyDataPageResource myDataPageResource = new MyDataPageResource();
-        myDataPageResource.setPageSize(myDataPage.getSize());
+
+        long totalElements = myDataPage.getTotalElements();
+        int pageSize = myDataPage.getSize();
+
+        myDataPageResource.setPageSize(pageSize);
         myDataPageResource.setPageNumber(myDataPage.getNumber());
-        myDataPageResource.setTotal(myDataPage.getTotalElements());
+        myDataPageResource.setTotal(totalElements);
+
+        long totalPages;
+        if ((totalElements % pageSize) == 0) {
+            totalPages = totalElements / pageSize;
+        } else {
+            totalPages = (totalElements / pageSize) + 1;
+        }
+
+        myDataPageResource.setPagesTotal(totalPages);
 
         myDataPage.getContent()
                 .stream()

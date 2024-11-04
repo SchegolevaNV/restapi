@@ -14,7 +14,10 @@ public class MyDataService {
 
     private final PeopleAndPetRepository peopleAndPetRepository;
 
-    public Page<PeopleAndPet> getMyData(final int offset, final int limit) {
+    public Page<PeopleAndPet> getMyData(final int offset, int limit) {
+        if (limit == 0) {
+            limit = 1;
+        }
         int page = offset/limit;
         Pageable pageable = PageRequest.of(page, limit);
         return peopleAndPetRepository.findAll(pageable);

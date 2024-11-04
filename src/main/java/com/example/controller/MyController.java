@@ -20,10 +20,20 @@ public class MyController {
     private final MyDataService myDataService;
     private final MyDataAssembler myDataAssembler;
 
+    @GetMapping("/all")
+    @Transactional
+    public MyDataPageResource getAllJson(@RequestParam(defaultValue = "0", required = false) int offset,
+                                      @RequestParam(defaultValue = "25", required = false) int limit) {
+
+        Page<PeopleAndPet> myDataPage = myDataService.getMyData(offset, limit);
+
+        return myDataAssembler.toPageResource(myDataPage);
+    }
+
     @GetMapping("")
     @Transactional
     public MyDataPageResource getJson(@RequestParam(defaultValue = "0", required = false) int offset,
-                                      @RequestParam(defaultValue = "25", required = false) int limit) {
+                                      @RequestParam(defaultValue = "1", required = false) int limit) {
 
         Page<PeopleAndPet> myDataPage = myDataService.getMyData(offset, limit);
 

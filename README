@@ -5,3 +5,7 @@ JSON example
     "petName": "Tim",
     "age": 41
 }
+
+-- to get elements with offset and limit:
+
+http://127.0.0.1:8080/?offset=0&limit=1
